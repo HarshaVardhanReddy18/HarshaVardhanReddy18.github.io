@@ -86,7 +86,7 @@
             buildProfile(response);
           }
 
-          FB.api('/me/feed/', function(response){
+          FB.api('/me/feed', function(response){
             if(response && !response.error){
               buildFeed(response);
             }
@@ -163,11 +163,13 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a id="logout" href="#" onclick="logout()">Logout</a></li>
+            <li>
             <fb:login-button
               id="fb-btn"
               scope="public_profile,email,user_birthday,user_location,user_posts"
               onlogin="checkLoginState();">
             </fb:login-button>
+        	</li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
