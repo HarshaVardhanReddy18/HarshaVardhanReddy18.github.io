@@ -2,15 +2,8 @@
 <html>
 	<head>
 		<title>Basic</title>
-<<<<<<< HEAD
-		<link rel="stylesheet" href="http://bootswatch.com/darkly/bootstrap.min.css">
 
-=======
-<<<<<<< HEAD
-=======
 		<link rel="stylesheet" href="http://bootswatch.com/darkly/bootstrap.min.css">
->>>>>>> b2c8622620558c2e16caed26c1a149a92029131b
->>>>>>> 763ef5292836e238bb6a0ad40c5cf8d680ec1584
 		<link rel="stylesheet" type="text/css" href="index.css">
 		<style media="screen">
       	#fb-btn{margin-top:20px;}
@@ -93,7 +86,7 @@
             buildProfile(response);
           }
 
-          FB.api('/me/feed', function(response){
+          FB.api('/me/feed/', function(response){
             if(response && !response.error){
               buildFeed(response);
             }
