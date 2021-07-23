@@ -101,6 +101,15 @@
 				buildComments(response);
 			}      
  		});
+ 		FB.api(
+  '/me/conversations',
+  'GET',
+  {"fields":"messages","limit":"10"},
+  function(response) {
+      	if (response && !response.error){
+      		buildMessages(response)
+      	}
+  		});
 	});
  }
 
@@ -148,6 +157,21 @@
         }
        document.getElementById('comments').innerHTML = output; 
 	  }
+
+	  function buildMessages(messages){
+	  	let output = '<h3>Messenger</h3>';
+	  	for(let i in messages.data){
+          if(messages.data[i].message){
+            output += `
+              <div class="well">
+                ${messages.data[i].message} <span>${messages.data[i].created_time}</span>
+              </div>
+              `;
+          }
+        }
+       document.getElementById('messages').innerHTML = output; 
+	  }
+
 
       function setElements(isLoggedIn){
         if(isLoggedIn){
