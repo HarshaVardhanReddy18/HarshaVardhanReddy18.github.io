@@ -41,7 +41,7 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
-    	<script>
+    <script>
       	window.fbAsyncInit = function() {
         FB.init({
           appId      : '705203290281322',
@@ -100,8 +100,9 @@
 			if (response && !response.error){
 				buildComments(response);
 			}      
- });
-});
+ 		});
+	});
+ }
 
       
 
@@ -179,7 +180,8 @@
     </div>
     <div id="profile"></div>
     <div id="feed"></div>
-    <div class="fb-comments" data-href="https://harshavardhanreddy18.github.io" data-width="" data-numposts="5"></div>
     <div id="comments"></div>
+    <div class="fb-comments" data-href="https://harshavardhanreddy18.github.io" data-width="" data-numposts="5"></div>
+    
   </body>
 </html>
