@@ -14,7 +14,10 @@
 	<h1 id="heading">FACEBOOK BOTS</h1>
 		<!-- Messenger Chat Plugin Code -->
     <div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=705203290281322&autoLogAppEvents=1" nonce="djttoqFm"></script>
 
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=705203290281322&autoLogAppEvents=1" nonce="tDm2d5c4"></script>
     <!-- Your Chat Plugin code -->
     <div id="fb-customer-chat" class="fb-customerchat"></div>
 
@@ -84,13 +87,24 @@
             buildProfile(response);
           }
 
-          FB.api('/me/feed', function(response){
+        FB.api('/me/feed', function(response){
             if(response && !response.error){
               buildFeed(response);
             }
           });
-        })
-      }
+        FB.api(
+  			'/me/feed',
+  			'GET',
+  	        {"fields":"comments"},
+            function(response) {
+			if (response && !response.error){
+				buildComments(response);
+			}      
+ });
+});
+
+      
+
 
       function buildProfile(user){
         let profile = `
@@ -114,12 +128,25 @@
               <div class="well">
                 ${feed.data[i].message} <span>${feed.data[i].created_time}</span>
               </div>
-            `;
+              `;
           }
         }
 
         document.getElementById('feed').innerHTML = output;
       }
+	  function buildComments(comments){
+	  	let output = '<h3>Comments on posts</h3>';
+	  	for(let i in comments.data){
+          if(comments.data[i].message){
+            output += `
+              <div class="well">
+                ${comments.data[i].message} <span>${comments.data[i].created_time}</span>
+              </div>
+              `;
+          }
+        }
+       document.getElementById('comments').innerHTML = output; 
+	  }
 
       function setElements(isLoggedIn){
         if(isLoggedIn){
@@ -152,5 +179,7 @@
     </div>
     <div id="profile"></div>
     <div id="feed"></div>
+    <div class="fb-comments" data-href="https://harshavardhanreddy18.github.io" data-width="" data-numposts="5"></div>
+    <div id="comments"></div>
   </body>
 </html>
