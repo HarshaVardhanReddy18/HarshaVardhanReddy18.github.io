@@ -86,31 +86,23 @@
             //console.log(response);
             buildProfile(response);
           }
-
+          });
         FB.api('/me/feed', function(response){
             if(response && !response.error){
               buildFeed(response);
             }
           });
         FB.api(
-  			'/me/feed',
-  			'GET',
-  	        {"fields":"comments"},
-            function(response) {
+  			'me/feed?fields=comments',function(response) {
 			if (response && !response.error){
 				buildComments(response);
 			}      
  		});
- 		FB.api(
-  '/me/conversations',
-  'GET',
-  {"fields":"messages","limit":"10"},
-  function(response) {
+ 		FB.api('me/conversations?fields=can_reply&limit=10',function(response) {
       	if (response && !response.error){
       		buildMessages(response)
       	}
   		});
-	});
  }
 
       
